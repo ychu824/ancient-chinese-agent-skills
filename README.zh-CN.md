@@ -12,6 +12,8 @@
 |---|---|---|
 | [`statecraft-research`](statecraft-research/SKILL.md) | 组织一组 agent 做调研：多入口独立探查、独立核查、按证据等级交付。针对两种方向相反的失败：漏掉读者不知道存在的东西，和交回编造或不相关的东西。 | v0.1，评估结果见下 |
 
+每个 skill 有两份：`SKILL.md` 是英文，也是 agent 实际加载的文件；`SKILL.zh-CN.md` 是中文，内容相同。想让 agent 加载中文版，把两个文件名对调即可。
+
 ## 来源
 
 | 典籍 | 在这里的用法 |
@@ -43,6 +45,8 @@
 | 试任 | 左传·襄公三十一年 | 未能操刀而使割也，其伤实多 | 新 skill、新 prompt、新 agent 配置先过评估，再上真实任务。 |
 
 ## `statecraft-research` v0.1 的评估
+
+下面的运行用的是 skill 的中文文本，即现在的 `SKILL.zh-CN.md`。英文的 `SKILL.md` 是它的翻译，没有单独评估过。
 
 每个 skill 都和不带 skill 的 baseline 用完全相同的 prompt 对照。三个 case，每种配置各跑一次：调研一个并不存在的方法、调研一个研究领域、为一个 shared task 调研相关工作。之后由独立的 agent 打开一手来源，核对每份报告里的条目。
 
@@ -78,7 +82,8 @@
 
 ```
 statecraft-research/
-├── SKILL.md                  # 流程：探 → 验 → 判 → 报，brief 模板
+├── SKILL.md                  # 流程：探 → 验 → 判 → 报，brief 模板（英文）
+├── SKILL.zh-CN.md            # 同上，中文
 └── references/
     └── framework.md          # 完整对照表、三十六计 threat model、类比失效处
 ```

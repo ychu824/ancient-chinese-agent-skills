@@ -12,7 +12,7 @@ The classical writings on statecraft (御人之术, "the art of directing people
 |---|---|---|
 | [`statecraft-research`](statecraft-research/SKILL.md) | Run a research survey with a group of agents: independent scouting from several entry points, separate verification, and a report graded by evidence level. It targets two opposite failures: missing what the reader does not know exists, and handing back fabricated or irrelevant material. | v0.1, evaluated below |
 
-The skill files are written in Chinese with English technical terms.
+Each skill ships in two languages: `SKILL.md` in English, which is the file an agent loads, and `SKILL.zh-CN.md` in Chinese. Classical quotations appear in the original with a translation. To load the Chinese version instead, swap the two file names.
 
 ## Sources
 
@@ -45,6 +45,8 @@ A selection. The full table (nine layers, 24 rows, with practices for both resea
 | Test before trusting 试任 | *Zuo Zhuan*, Duke Xiang, year 31 《左传·襄公三十一年》 | 未能操刀而使割也，其伤实多 | "Let one cut who cannot yet hold the knife, and the harm is great." | Evaluate a new skill, prompt or agent configuration before giving it real work. |
 
 ## Evaluation of `statecraft-research` v0.1
+
+The runs below used the Chinese text of the skill, now `SKILL.zh-CN.md`. The English `SKILL.md` is a translation of it and has not been evaluated separately.
 
 Each skill is compared with a no-skill baseline on identical prompts. Three cases were run once per configuration: a request about a method that does not exist, a survey of a research field, and a survey of related work for a shared task. Independent agents then opened primary sources to check the claims in each report.
 
@@ -81,8 +83,9 @@ The classics are about managing people. Agents differ in ways that matter:
 ```
 statecraft-research/
 ├── SKILL.md                  # the workflow: scout → verify → judge → report, with brief templates
+├── SKILL.zh-CN.md            # the same in Chinese
 └── references/
-    └── framework.md          # full table, the Thirty-Six Stratagems as threat model, limits of the analogy
+    └── framework.md          # full table, the Thirty-Six Stratagems as threat model, limits of the analogy (Chinese)
 ```
 
 ## Install
