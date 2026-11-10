@@ -10,7 +10,7 @@
 
 | Skill | 用途 | 状态 |
 |---|---|---|
-| [`statecraft-research`](statecraft-research/SKILL.md) | 组织一组 agent 做调研：多入口独立探查、独立核查、按证据等级交付。针对两种方向相反的失败：漏掉读者不知道存在的东西，和交回编造或不相关的东西。 | v0.1，评估结果见下 |
+| [`statecraft-research`](statecraft-research/SKILL.zh-CN.md) | 组织一组 agent 做调研：多入口独立探查、按条核查说法、对照最接近的已有工作查新、报告里写明完成到了哪一步。针对两种方向相反的失败：漏掉读者不知道存在的东西，和交回编造或不相关的东西。 | v0.2，尚未评估；v0.1 的评估结果见下 |
 
 每个 skill 有两份：`SKILL.md` 是英文，也是 agent 实际加载的文件；`SKILL.zh-CN.md` 是中文，内容相同。想让 agent 加载中文版，把两个文件名对调即可。
 
@@ -46,7 +46,9 @@
 
 ## `statecraft-research` v0.1 的评估
 
-下面的运行用的是 skill 的中文文本，即现在的 `SKILL.zh-CN.md`。英文的 `SKILL.md` 是它的翻译，没有单独评估过。
+下面的运行用的是 v0.1 的中文文本。英文的 `SKILL.md` 是翻译，没有单独评估过。
+
+仓库里现在的文件是 v0.2，尚未评估。它来自一次在系统类代码库上的 pilot 试用（[issue #1](https://github.com/ychu824/ancient-chinese-agent-skills/issues/1)），新增了仓库考古、最接近工作查新、可证伪的实验方案、完成门槛（pilot / partial survey / deep survey）、每条说法的出处类别和核查结果分开标注，以及合并后再决定是否第二轮探查；并把覆盖率的数字估计换成了诊断项。v0.1 花费更多而准确率没有提高，v0.2 又加了步骤，它值不值这个成本还没有答案。
 
 每个 skill 都和不带 skill 的 baseline 用完全相同的 prompt 对照。三个 case，每种配置各跑一次：调研一个并不存在的方法、调研一个研究领域、为一个 shared task 调研相关工作。之后由独立的 agent 打开一手来源，核对每份报告里的条目。
 
@@ -84,8 +86,11 @@
 statecraft-research/
 ├── SKILL.md                  # 流程：探 → 验 → 判 → 报，brief 模板（英文）
 ├── SKILL.zh-CN.md            # 同上，中文
-└── references/
-    └── framework.md          # 完整对照表、三十六计 threat model、类比失效处
+└── references/               # 下面三份指引各有英文版（.md）和中文版（.zh-CN.md）
+    ├── repository-archaeology.zh-CN.md   # 对代码库提建议之前要先确定的事
+    ├── novelty-check.zh-CN.md            # 最接近工作对比表
+    ├── experiment-design.zh-CN.md        # 可证伪的实验方案包含什么
+    └── framework.md                      # 完整对照表、三十六计 threat model、类比失效处
 ```
 
 ## 安装

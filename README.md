@@ -10,7 +10,7 @@ The classical writings on statecraft (御人之术, "the art of directing people
 
 | Skill | Purpose | Status |
 |---|---|---|
-| [`statecraft-research`](statecraft-research/SKILL.md) | Run a research survey with a group of agents: independent scouting from several entry points, separate verification, and a report graded by evidence level. It targets two opposite failures: missing what the reader does not know exists, and handing back fabricated or irrelevant material. | v0.1, evaluated below |
+| [`statecraft-research`](statecraft-research/SKILL.md) | Run a research survey with a group of agents: independent scouting from several entry points, claim-level verification, a novelty check against the closest prior work, and a report that states how complete it is. It targets two opposite failures: missing what the reader does not know exists, and handing back fabricated or irrelevant material. | v0.2, not yet evaluated. v0.1 is evaluated below |
 
 Each skill ships in two languages: `SKILL.md` in English, which is the file an agent loads, and `SKILL.zh-CN.md` in Chinese. Classical quotations appear in the original with a translation. To load the Chinese version instead, swap the two file names.
 
@@ -46,7 +46,9 @@ A selection. The full table (nine layers, 24 rows, with practices for both resea
 
 ## Evaluation of `statecraft-research` v0.1
 
-The runs below used the Chinese text of the skill, now `SKILL.zh-CN.md`. The English `SKILL.md` is a translation of it and has not been evaluated separately.
+The runs below used v0.1, in its Chinese text. The English `SKILL.md` is a translation and has not been evaluated separately.
+
+The current files are v0.2, which has not been evaluated. It follows a pilot use on a systems codebase ([issue #1](https://github.com/ychu824/ancient-chinese-agent-skills/issues/1)) and adds repository archaeology, a closest-work novelty check, falsifiable experiment plans, completion gates (pilot / partial survey / deep survey), separate provenance and verdict labels for each claim, and a merge-and-second-pass step. It replaces the numeric coverage estimate with diagnostics. v0.1 cost more without improving accuracy, and v0.2 adds further steps, so whether it earns its cost is an open question.
 
 Each skill is compared with a no-skill baseline on identical prompts. Three cases were run once per configuration: a request about a method that does not exist, a survey of a research field, and a survey of related work for a shared task. Independent agents then opened primary sources to check the claims in each report.
 
@@ -84,8 +86,11 @@ The classics are about managing people. Agents differ in ways that matter:
 statecraft-research/
 ├── SKILL.md                  # the workflow: scout → verify → judge → report, with brief templates
 ├── SKILL.zh-CN.md            # the same in Chinese
-└── references/
-    └── framework.md          # full table, the Thirty-Six Stratagems as threat model, limits of the analogy (Chinese)
+└── references/               # each of the three guides below also has a .zh-CN.md version
+    ├── repository-archaeology.md   # what to establish in a codebase before recommending a change
+    ├── novelty-check.md            # the closest-work table
+    ├── experiment-design.md        # what a falsifiable plan contains
+    └── framework.md                # full table, the Thirty-Six Stratagems as threat model, limits of the analogy (Chinese)
 ```
 
 ## Install
