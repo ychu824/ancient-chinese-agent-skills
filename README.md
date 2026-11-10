@@ -10,7 +10,7 @@ The classical writings on statecraft (御人之术, "the art of directing people
 
 | Skill | Purpose | Status |
 |---|---|---|
-| [`statecraft-research`](statecraft-research/SKILL.md) | Run a research survey with a group of agents: independent scouting from several entry points, claim-level verification, a novelty check against the closest prior work, and a report that states how complete it is. It targets two opposite failures: missing what the reader does not know exists, and handing back fabricated or irrelevant material. | v0.2, not yet evaluated. v0.1 is evaluated below |
+| [`statecraft-research`](statecraft-research/SKILL.md) | Run a research survey with effort matched to the decision: three modes (fast, standard, deep), the primary artefact inspected first, cheap scouting, triage before verification, claim-level checks on the shortlist, and a report that labels what was and was not checked. It targets three failures: missing what the reader does not know exists, handing back fabricated or irrelevant material, and spending more than the decision is worth. | v0.3, not yet evaluated. v0.1 is evaluated below |
 
 Each skill ships in two languages: `SKILL.md` in English, which is the file an agent loads, and `SKILL.zh-CN.md` in Chinese. Classical quotations appear in the original with a translation. To load the Chinese version instead, swap the two file names.
 
@@ -24,10 +24,13 @@ Each skill ships in two languages: `SKILL.md` in English, which is the file an a
 | *Zuo Zhuan* 《左传》 | Cases on chain of command, on making use of dissent, and on keeping records independent of the people recorded. |
 | *Spring and Autumn Annals* 《春秋》 | One idea only: a fixed vocabulary in which the choice of word carries the verdict. |
 | *Thirty-Six Stratagems* 《三十六计》 | Stratagems against an enemy. Misapplied as management advice; used here as a threat model for how agents deceive or are deceived. |
+| *The Art of War*, "Waging War" 《孙子·作战篇》 | The chapter on what a campaign costs. Source of the rules on latency, on the cost of hauling context between agents, and on reusing what already exists. |
+| *Mozi*, "Economy of Expenditures" 《墨子·节用》 | Outside the original six texts. The stopping rule: spend nothing that adds no use. |
+| *Xunzi* 《荀子·王霸》, *Lüshi Chunqiu* 《吕氏春秋·察传》, *Analects* 《论语》 | Outside the original six; one rule from each: the centre holds only essentials, words distort as they are passed along, and haste does not arrive. |
 
 ## Principles
 
-A selection. The full table (nine layers, 24 rows, with practices for both research and code review) is in [`statecraft-research/references/framework.md`](statecraft-research/references/framework.md), in Chinese.
+A selection. The full table (twelve layers, 46 rows, with practices for both research and code review) is in [`statecraft-research/references/framework.md`](statecraft-research/references/framework.md), in Chinese.
 
 | Principle | Source | Original | Translation | Practice with agents |
 |---|---|---|---|---|
@@ -43,12 +46,19 @@ A selection. The full table (nine layers, 24 rows, with practices for both resea
 | Take it from those who know 用间 | *The Art of War*, "Using Spies" 《孙子·用间》 | 先知者，不可象于事，不可验于度，必取于人 | "Foreknowledge cannot be had by analogy or by calculation; it must be obtained from people who know." | Retrieve from sources and inspect the real artefact. Do not infer from what the model remembers. |
 | Record doubt as doubt 直书 | *Guliang Commentary*, Duke Huan, year 5 《谷梁传·桓公五年》 | 信以传信，疑以传疑 | "Pass on the certain as certain and the doubtful as doubtful." | Every claim carries an evidence level drawn from one fixed vocabulary. |
 | Test before trusting 试任 | *Zuo Zhuan*, Duke Xiang, year 31 《左传·襄公三十一年》 | 未能操刀而使割也，其伤实多 | "Let one cut who cannot yet hold the knife, and the harm is great." | Evaluate a new skill, prompt or agent configuration before giving it real work. |
+| Three articles of law 约法三章 | *Records of the Grand Historian*, "Gaozu" 《史记·高祖本纪》 | 法三章耳……余悉除去秦法 | "The law shall have three articles only … the rest of the Qin code is abolished." | Process can be cut; three invariants cannot: never present the unchecked as checked, keep provenance, escalate when a key uncertainty remains. |
+| Rough and quick 拙速 | *The Art of War*, "Waging War" 《孙子·作战篇》 | 兵闻拙速，未睹巧之久也 | "I have heard of clumsy speed in war; I have never seen skill in dragging it out." | The aim is to support a decision. Default to the cheaper mode and escalate only for cause. |
+| Guard everywhere, weak everywhere 无所不备 | *The Art of War*, "Weak Points and Strong" 《孙子·虚实》 | 无所不备，则无所不寡 | "Guard everywhere and you are weak everywhere." | Triage before verifying. Checking effort goes to the shortlist; the rest is labelled unchecked. |
+| Supplies hauled far 远输 | *The Art of War*, "Waging War" 《孙子·作战篇》 | 国之贫于师者远输 | "What impoverishes a state at war is transport over distance." | Store each source once. Pass ids and locators between stages, not pasted extracts. |
+| When it suffices, stop 节用 | *Mozi*, "Economy of Expenditures II" 《墨子·节用中》 | 凡足以奉给民用，则止 | "When it suffices for the people's use, stop." | Stop when another round would not change the recommendation. |
+| Light paperwork, far scouts 远斥候 | *Records of the Grand Historian*, "General Li" 《史记·李将军列传》 | 省约文书籍事，然亦远斥候 | "He kept records to a minimum, yet posted his scouts far out." | The fast mode may drop process. It may not drop looking at the artefact or checking the claims the verdict rests on. |
+| Hold the essentials 执要 | *Han Feizi*, "Wielding Power" 《韩非子·扬权》 | 事在四方，要在中央；圣人执要 | "Affairs lie in the four quarters; the essentials lie at the centre." | One orchestrator deduplicates, ranks and writes. It holds compact records, not source text. |
 
 ## Evaluation of `statecraft-research` v0.1
 
 The runs below used v0.1, in its Chinese text. The English `SKILL.md` is a translation and has not been evaluated separately.
 
-The current files are v0.2, which has not been evaluated. It follows a pilot use on a systems codebase ([issue #1](https://github.com/ychu824/ancient-chinese-agent-skills/issues/1)) and adds repository archaeology, a closest-work novelty check, falsifiable experiment plans, completion gates (pilot / partial survey / deep survey), separate provenance and verdict labels for each claim, and a merge-and-second-pass step. It replaces the numeric coverage estimate with diagnostics. v0.1 cost more without improving accuracy, and v0.2 adds further steps, so whether it earns its cost is an open question.
+The current files are v0.3, which has not been evaluated. Two changes followed v0.1, both prompted by use on a systems codebase. v0.2 ([issue #1](https://github.com/ychu824/ancient-chinese-agent-skills/issues/1)) added rigour: repository archaeology, a closest-work novelty check, falsifiable experiment plans, and separate provenance and verdict labels for each claim. v0.3 ([issue #3](https://github.com/ychu824/ancient-chinese-agent-skills/issues/3)) makes that rigour conditional on cost: fast, standard and deep modes with standard as the default, a pipeline that triages before it verifies, compact scout records, explicit stopping and escalation rules, and a shorter `SKILL.md` with the detail moved into references loaded per step. The targets in issue #3 (40–60% fewer tokens and 30–50% less time, with no meaningful loss of recall or accuracy) are hypotheses. The protocol for testing them, and the numbers recorded so far, are in [`BENCHMARK.md`](BENCHMARK.md).
 
 Each skill is compared with a no-skill baseline on identical prompts. Three cases were run once per configuration: a request about a method that does not exist, a survey of a research field, and a survey of related work for a shared task. Independent agents then opened primary sources to check the claims in each report.
 
@@ -84,13 +94,16 @@ The classics are about managing people. Agents differ in ways that matter:
 
 ```
 statecraft-research/
-├── SKILL.md                  # the workflow: scout → verify → judge → report, with brief templates
+├── SKILL.md                  # the orchestration contract: three rules, modes, pipeline, record format
 ├── SKILL.zh-CN.md            # the same in Chinese
-└── references/               # each of the three guides below also has a .zh-CN.md version
+└── references/               # each guide below except framework.md also has a .zh-CN.md version
+    ├── scouting.md                 # artefact checks, terminology map, the six entries, merging, scout brief
+    ├── verification.md             # how to check a claim, when to use an independent verifier
+    ├── deep-survey.md              # Deep mode: gates and full report structure
     ├── repository-archaeology.md   # what to establish in a codebase before recommending a change
     ├── novelty-check.md            # the closest-work table
     ├── experiment-design.md        # what a falsifiable plan contains
-    └── framework.md                # full table, the Thirty-Six Stratagems as threat model, limits of the analogy (Chinese)
+    └── framework.md                # full table of 46 rules, the Thirty-Six Stratagems as threat model, limits of the analogy (Chinese)
 ```
 
 ## Install

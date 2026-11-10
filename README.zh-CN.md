@@ -10,7 +10,7 @@
 
 | Skill | 用途 | 状态 |
 |---|---|---|
-| [`statecraft-research`](statecraft-research/SKILL.zh-CN.md) | 组织一组 agent 做调研：多入口独立探查、按条核查说法、对照最接近的已有工作查新、报告里写明完成到了哪一步。针对两种方向相反的失败：漏掉读者不知道存在的东西，和交回编造或不相关的东西。 | v0.2，尚未评估；v0.1 的评估结果见下 |
+| [`statecraft-research`](statecraft-research/SKILL.zh-CN.md) | 按决策的分量花力气做调研：Fast / Standard / Deep 三档，先看实物，便宜地探查，先筛再验，对 shortlist 按条核查说法，报告里标明哪些核过、哪些没核。针对三种失败：漏掉读者不知道存在的东西，交回编造或不相关的东西，以及花掉超过这个决策所值的成本。 | v0.3，尚未评估；v0.1 的评估结果见下 |
 
 每个 skill 有两份：`SKILL.md` 是英文，也是 agent 实际加载的文件；`SKILL.zh-CN.md` 是中文，内容相同。想让 agent 加载中文版，把两个文件名对调即可。
 
@@ -24,10 +24,13 @@
 | 《左传》 | 指挥链、怎么用反对意见、记录怎样独立于当事人，这三类案例。 |
 | 《春秋》 | 只取一条：笔法，即用固定词表承载判定。 |
 | 《三十六计》 | 对敌诡道，拿来管自己人是错配。在这里当 threat model 用，列举 agent 欺骗你或被欺骗的方式。 |
+| 《孙子·作战篇》 | 讲一场仗要花多少钱的一篇。延迟、agent 之间传 context 的开销、复用现成材料，这几条规则出自这里。 |
+| 《墨子·节用》 | 原六部之外。停止规则的出处：不增加效用的花费不花。 |
+| 《荀子·王霸》《吕氏春秋·察传》《论语》 | 原六部之外，各取一条：中枢只握要点；话传几道就走样；欲速则不达。 |
 
 ## 原则
 
-下面是节选。完整对照表（九层 24 条，含调研和 code review 两个场景的做法）在 [`statecraft-research/references/framework.md`](statecraft-research/references/framework.md)。
+下面是节选。完整对照表（十二层 46 条，含调研和 code review 两个场景的做法）在 [`statecraft-research/references/framework.md`](statecraft-research/references/framework.md)。
 
 | 原则 | 出处 | 原文 | 对 agent 的做法 |
 |---|---|---|---|
@@ -43,12 +46,19 @@
 | 用间 | 孙子·用间 | 先知者，不可象于事，不可验于度，必取于人 | 取自来源，摸实物；不从模型的记忆里类推。 |
 | 直书 | 谷梁传·桓公五年 | 信以传信，疑以传疑 | 每条结论带证据等级，全篇用同一套词。 |
 | 试任 | 左传·襄公三十一年 | 未能操刀而使割也，其伤实多 | 新 skill、新 prompt、新 agent 配置先过评估，再上真实任务。 |
+| 约法三章 | 史记·高祖本纪 | 法三章耳……余悉除去秦法 | 流程可以省，三条不变量不能省：未核不写成已核；保留出处；关键不确定未解时升级。 |
+| 拙速 | 孙子·作战篇 | 兵闻拙速，未睹巧之久也 | 目标是支持决策。默认用便宜的档位，有理由才升级。 |
+| 无所不备 | 孙子·虚实 | 无所不备，则无所不寡 | 先筛再验。核查的力气放在 shortlist 上，其余标"未核"。 |
+| 远输 | 孙子·作战篇 | 国之贫于师者远输 | 来源只存一次。阶段之间传 id 和定位，不传粘贴的原文。 |
+| 节用 | 墨子·节用中 | 凡足以奉给民用，则止 | 再查一轮不会改变建议，就停。 |
+| 远斥候 | 史记·李将军列传 | 省约文书籍事，然亦远斥候 | Fast 档可以省流程，不能省看实物和核查结论所依赖的说法。 |
+| 执要 | 韩非子·扬权 | 事在四方，要在中央；圣人执要 | 一个 orchestrator 负责去重、排序和成文，手里只有紧凑的记录，没有原文。 |
 
 ## `statecraft-research` v0.1 的评估
 
 下面的运行用的是 v0.1 的中文文本。英文的 `SKILL.md` 是翻译，没有单独评估过。
 
-仓库里现在的文件是 v0.2，尚未评估。它来自一次在系统类代码库上的 pilot 试用（[issue #1](https://github.com/ychu824/ancient-chinese-agent-skills/issues/1)），新增了仓库考古、最接近工作查新、可证伪的实验方案、完成门槛（pilot / partial survey / deep survey）、每条说法的出处类别和核查结果分开标注，以及合并后再决定是否第二轮探查；并把覆盖率的数字估计换成了诊断项。v0.1 花费更多而准确率没有提高，v0.2 又加了步骤，它值不值这个成本还没有答案。
+仓库里现在的文件是 v0.3，尚未评估。v0.1 之后有两次改动，都来自在系统类代码库上的实际使用。v0.2（[issue #1](https://github.com/ychu824/ancient-chinese-agent-skills/issues/1)）加的是严谨：仓库考古、最接近工作查新、可证伪的实验方案、每条说法的出处类别和核查结果分开标注。v0.3（[issue #3](https://github.com/ychu824/ancient-chinese-agent-skills/issues/3)）让这些严谨按成本取用：Fast / Standard / Deep 三档并以 Standard 为默认，先筛再验的流程，紧凑的 scout 记录，明文的停止和升级规则，以及更短的 `SKILL.md`，细节挪进按步骤加载的 references。issue #3 里的目标（token 少 40–60%、用时少 30–50%，recall 和准确率没有明显下降）是假设。检验它们的方案和目前已有的数字在 [`BENCHMARK.md`](BENCHMARK.md)。
 
 每个 skill 都和不带 skill 的 baseline 用完全相同的 prompt 对照。三个 case，每种配置各跑一次：调研一个并不存在的方法、调研一个研究领域、为一个 shared task 调研相关工作。之后由独立的 agent 打开一手来源，核对每份报告里的条目。
 
@@ -84,13 +94,16 @@
 
 ```
 statecraft-research/
-├── SKILL.md                  # 流程：探 → 验 → 判 → 报，brief 模板（英文）
+├── SKILL.md                  # 编排契约：三条规则、档位、流程、记录格式（英文）
 ├── SKILL.zh-CN.md            # 同上，中文
-└── references/               # 下面三份指引各有英文版（.md）和中文版（.zh-CN.md）
+└── references/               # 除 framework.md 外，每份指引都有英文版（.md）和中文版（.zh-CN.md）
+    ├── scouting.zh-CN.md                 # 实物检查、术语地图、六个入口、合并、scout brief
+    ├── verification.zh-CN.md             # 怎么核一条说法，什么时候用独立 verifier
+    ├── deep-survey.zh-CN.md              # Deep 档：门槛和完整报告结构
     ├── repository-archaeology.zh-CN.md   # 对代码库提建议之前要先确定的事
     ├── novelty-check.zh-CN.md            # 最接近工作对比表
     ├── experiment-design.zh-CN.md        # 可证伪的实验方案包含什么
-    └── framework.md                      # 完整对照表、三十六计 threat model、类比失效处
+    └── framework.md                      # 46 条完整对照表、三十六计 threat model、类比失效处
 ```
 
 ## 安装
