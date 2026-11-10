@@ -30,7 +30,7 @@
 
 ## 原则
 
-下面是节选。完整对照表（十二层 46 条，含调研和 code review 两个场景的做法）在 [`statecraft-research/references/framework.md`](statecraft-research/references/framework.md)。
+下面是节选。完整对照表（十二层 48 条，含调研和 code review 两个场景的做法）在 [`statecraft-research/references/framework.md`](statecraft-research/references/framework.md)。
 
 | 原则 | 出处 | 原文 | 对 agent 的做法 |
 |---|---|---|---|
@@ -58,7 +58,7 @@
 
 下面的运行用的是 v0.1 的中文文本。英文的 `SKILL.md` 是翻译，没有单独评估过。
 
-仓库里现在的文件是 v0.3，尚未评估。v0.1 之后有两次改动，都来自在系统类代码库上的实际使用。v0.2（[issue #1](https://github.com/ychu824/ancient-chinese-agent-skills/issues/1)）加的是严谨：仓库考古、最接近工作查新、可证伪的实验方案、每条说法的出处类别和核查结果分开标注。v0.3（[issue #3](https://github.com/ychu824/ancient-chinese-agent-skills/issues/3)）让这些严谨按成本取用：Fast / Standard / Deep 三档并以 Standard 为默认，先筛再验的流程，紧凑的 scout 记录，明文的停止和升级规则，以及更短的 `SKILL.md`，细节挪进按步骤加载的 references。issue #3 里的目标（token 少 40–60%、用时少 30–50%，recall 和准确率没有明显下降）是假设。检验它们的方案和目前已有的数字在 [`BENCHMARK.md`](BENCHMARK.md)。
+仓库里现在的文件是 v0.3.1。v0.3 和不用 skill 对比跑过一次，任务是一个代码库：成本略高，两份报告对照代码核对都站得住，各自找到了对方漏掉的东西。v0.3.1 补上那次运行暴露出的两处缺口（代码库的探查入口、只用 git 的查重办法），还没有跑过。v0.1 之后有三次改动，前两次来自在系统类代码库上的实际使用。v0.2（[issue #1](https://github.com/ychu824/ancient-chinese-agent-skills/issues/1)）加的是严谨：仓库考古、最接近工作查新、可证伪的实验方案、每条说法的出处类别和核查结果分开标注。v0.3（[issue #3](https://github.com/ychu824/ancient-chinese-agent-skills/issues/3)）让这些严谨按成本取用：Fast / Standard / Deep 三档并以 Standard 为默认，先筛再验的流程，紧凑的 scout 记录，明文的停止和升级规则，以及更短的 `SKILL.md`，细节挪进按步骤加载的 references。issue #3 里的目标（token 少 40–60%、用时少 30–50%，recall 和准确率没有明显下降）是假设。检验它们的方案和目前已有的数字在 [`BENCHMARK.md`](BENCHMARK.md)。
 
 每个 skill 都和不带 skill 的 baseline 用完全相同的 prompt 对照。三个 case，每种配置各跑一次：调研一个并不存在的方法、调研一个研究领域、为一个 shared task 调研相关工作。之后由独立的 agent 打开一手来源，核对每份报告里的条目。
 
@@ -103,7 +103,7 @@ statecraft-research/
     ├── repository-archaeology.zh-CN.md   # 对代码库提建议之前要先确定的事
     ├── novelty-check.zh-CN.md            # 最接近工作对比表
     ├── experiment-design.zh-CN.md        # 可证伪的实验方案包含什么
-    └── framework.md                      # 46 条完整对照表、三十六计 threat model、类比失效处
+    └── framework.md                      # 48 条完整对照表、三十六计 threat model、类比失效处
 ```
 
 ## 安装

@@ -31,6 +31,8 @@ Then scout from distinct entries, keeping each entry's notes separate (五间俱
 | By the negative | Negative results, criticism, abandoned lines, failed replications |
 | By engineering | Open-source repositories, model cards, engineering blogs, neighbouring systems and runtimes |
 
+These six are aimed at literature. When the question is about a codebase (where to contribute, what to fix or optimise), use the codebase entries in `repository-archaeology.md` instead.
+
 How many to use is set by the mode: one or two in Fast, three in Standard, all six in Deep. Choose the entries least likely to return the same things. "By problem" and "by the negative" together usually cover more than two positive entries.
 
 Each entry returns records in the format given in `SKILL.md`, up to the candidate cap for the mode, plus two short lists: what would not open or was not found, and terms or subfields it met that it was not aimed at. Bad news is not failure (不如小决使道, "better to open a small breach and let it flow").
@@ -51,7 +53,7 @@ Not a default. Send one follow-up scout, with its own budget, only when a term o
 
 ```
 Purpose: <the decision this survey serves, one or two sentences>
-Your entry: <one of the six>. Do only this one.
+Your entry: <one entry from the table in use>. Do only this one.
 Constraints: <compute, data, time, eligibility>
 Known already: <ids of sources not to re-fetch>
 Budget: at most <N> rounds of search and <K> candidates. Stop there.

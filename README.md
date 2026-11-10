@@ -30,7 +30,7 @@ Each skill ships in two languages: `SKILL.md` in English, which is the file an a
 
 ## Principles
 
-A selection. The full table (twelve layers, 46 rows, with practices for both research and code review) is in [`statecraft-research/references/framework.md`](statecraft-research/references/framework.md), in Chinese.
+A selection. The full table (twelve layers, 48 rows, with practices for both research and code review) is in [`statecraft-research/references/framework.md`](statecraft-research/references/framework.md), in Chinese.
 
 | Principle | Source | Original | Translation | Practice with agents |
 |---|---|---|---|---|
@@ -58,7 +58,7 @@ A selection. The full table (twelve layers, 46 rows, with practices for both res
 
 The runs below used v0.1, in its Chinese text. The English `SKILL.md` is a translation and has not been evaluated separately.
 
-The current files are v0.3, which has not been evaluated. Two changes followed v0.1, both prompted by use on a systems codebase. v0.2 ([issue #1](https://github.com/ychu824/ancient-chinese-agent-skills/issues/1)) added rigour: repository archaeology, a closest-work novelty check, falsifiable experiment plans, and separate provenance and verdict labels for each claim. v0.3 ([issue #3](https://github.com/ychu824/ancient-chinese-agent-skills/issues/3)) makes that rigour conditional on cost: fast, standard and deep modes with standard as the default, a pipeline that triages before it verifies, compact scout records, explicit stopping and escalation rules, and a shorter `SKILL.md` with the detail moved into references loaded per step. The targets in issue #3 (40–60% fewer tokens and 30–50% less time, with no meaningful loss of recall or accuracy) are hypotheses. The protocol for testing them, and the numbers recorded so far, are in [`BENCHMARK.md`](BENCHMARK.md).
+The current files are v0.3.1. v0.3 has been run once against no skill, on one codebase task: it cost slightly more, both reports held up when checked against the code, and each found things the other missed. v0.3.1 adds what that run showed was missing (entries for scouting a codebase, and a git-only way to check for duplicate work) and has not been run. Three changes followed v0.1; the first two were prompted by use on a systems codebase. v0.2 ([issue #1](https://github.com/ychu824/ancient-chinese-agent-skills/issues/1)) added rigour: repository archaeology, a closest-work novelty check, falsifiable experiment plans, and separate provenance and verdict labels for each claim. v0.3 ([issue #3](https://github.com/ychu824/ancient-chinese-agent-skills/issues/3)) makes that rigour conditional on cost: fast, standard and deep modes with standard as the default, a pipeline that triages before it verifies, compact scout records, explicit stopping and escalation rules, and a shorter `SKILL.md` with the detail moved into references loaded per step. The targets in issue #3 (40–60% fewer tokens and 30–50% less time, with no meaningful loss of recall or accuracy) are hypotheses. The protocol for testing them, and the numbers recorded so far, are in [`BENCHMARK.md`](BENCHMARK.md).
 
 Each skill is compared with a no-skill baseline on identical prompts. Three cases were run once per configuration: a request about a method that does not exist, a survey of a research field, and a survey of related work for a shared task. Independent agents then opened primary sources to check the claims in each report.
 
@@ -103,7 +103,7 @@ statecraft-research/
     ├── repository-archaeology.md   # what to establish in a codebase before recommending a change
     ├── novelty-check.md            # the closest-work table
     ├── experiment-design.md        # what a falsifiable plan contains
-    └── framework.md                # full table of 46 rules, the Thirty-Six Stratagems as threat model, limits of the analogy (Chinese)
+    └── framework.md                # full table of 48 rules, the Thirty-Six Stratagems as threat model, limits of the analogy (Chinese)
 ```
 
 ## Install

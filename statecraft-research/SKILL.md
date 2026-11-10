@@ -1,6 +1,6 @@
 ---
 name: statecraft-research
-description: Runs a research survey with tiered, budget-aware effort (fast, standard or deep), using statecraft from ancient Chinese classics (The Art of War, Han Feizi, Zuo Zhuan, Strategies of the Warring States, Records of the Grand Historian). It inspects the primary artefact, scouts cheaply, triages before verifying, checks the claims the decision rests on, and labels what was and was not checked. Use this skill whenever the user asks to survey or 调研 a research area, find research ideas, look for publishable optimisations or contributions in a codebase or system, map related work for a paper, shared task or challenge, scout a field they are new to, or wants to surface things they don't know exist ("unknown unknowns") while keeping out hallucinated or irrelevant results. Use it even when the user doesn't mention agents or the classics, and even for a one-line request like "survey direction X for me" or "帮我调研一下 X 方向".
+description: Runs a research survey with tiered, budget-aware effort (fast, standard or deep), using statecraft from ancient Chinese classics (The Art of War, Han Feizi, Zuo Zhuan, Strategies of the Warring States, Records of the Grand Historian). It inspects the primary artefact, scouts cheaply, triages before verifying, checks the claims the decision rests on, and labels what was and was not checked. Use this skill whenever the user asks to survey or 调研 a research area, find research ideas, look for publishable optimisations, contributions or pull-request opportunities in a codebase or system, map related work for a paper, shared task or challenge, scout a field they are new to, or wants to surface things they don't know exist ("unknown unknowns") while keeping out hallucinated or irrelevant results. Use it even when the user doesn't mention agents or the classics, and even for a one-line request like "survey direction X for me" or "帮我调研一下 X 方向".
 ---
 
 # Statecraft research (御人调研)
@@ -42,7 +42,7 @@ Say which mode you are running. Fast mode drops paperwork, not reconnaissance: L
 Before starting, write down the decision this survey serves and the constraints (compute, data, time, eligibility), with any assumptions stated.
 
 1. **Inspect the primary artefact.** Paper, repository, dataset, benchmark or rules page. If it answers the question, stop here (先知者……必取于人, "foreknowledge must be obtained from those who know"). Read `references/scouting.md`; for a codebase also `references/repository-archaeology.md`.
-2. **Scout cheaply.** Use the entries your mode allows. A rough answer in time beats a polished one late (兵闻拙速，未睹巧之久也). Scouts return records, not essays.
+2. **Scout cheaply.** Use the entries your mode allows: the literature entries in `references/scouting.md`, or the codebase entries in `references/repository-archaeology.md` when the question is about a project's code (水因地而制流, "water shapes its course by the ground"). A rough answer in time beats a polished one late (兵闻拙速，未睹巧之久也). Scouts return records, not essays.
 3. **Merge and deduplicate.** Normalise identifiers so one work reached by several routes counts once.
 4. **Rank provisionally** by relevance and value to the decision. This ranking only allocates effort: put the strong horse where it decides the race (田忌赛马). Nothing ranked here is a conclusion.
 5. **Verify the shortlist.** Guard everywhere and you are weak everywhere (无所不备，则无所不寡). Read `references/verification.md`.
@@ -112,7 +112,7 @@ Open with a **Status** line: the mode run, any escalation and why, what was skip
 | File | Read when |
 |---|---|
 | `references/scouting.md` | steps 1–3: artefact checks, terminology map, the six entries, merging, scout brief |
-| `references/repository-archaeology.md` | the artefact is a codebase or system |
+| `references/repository-archaeology.md` | the artefact is a codebase or system: what to establish, the codebase entries, checking for duplicate work when the host's API is unavailable |
 | `references/verification.md` | step 5: how to check a claim, verifier brief |
 | `references/novelty-check.md` | step 7, before ranking an idea as a paper candidate |
 | `references/experiment-design.md` | step 7, when writing an idea's smallest experiment |

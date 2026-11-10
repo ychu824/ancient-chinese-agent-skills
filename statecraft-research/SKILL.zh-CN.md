@@ -1,6 +1,6 @@
 ---
 name: statecraft-research
-description: 用中国古籍里的御人之术（孙子兵法、韩非子、左传、战国策、史记）做分档、按预算花力气的调研（Fast / Standard / Deep）：先看实物，便宜地探查，先筛再验，核查决定结论的说法，并标明哪些核过、哪些没核。Use this skill whenever the user asks to 调研 or survey a research area, find research ideas, look for publishable optimisations or contributions in a codebase or system, map related work for a paper, shared task or challenge, scout a field they are new to, or wants to surface things they don't know exist ("unknown unknowns") while keeping out hallucinated or irrelevant results. Use it even when the user doesn't mention agents or the classics, and even for a one-line request like "帮我调研一下 X 方向".
+description: 用中国古籍里的御人之术（孙子兵法、韩非子、左传、战国策、史记）做分档、按预算花力气的调研（Fast / Standard / Deep）：先看实物，便宜地探查，先筛再验，核查决定结论的说法，并标明哪些核过、哪些没核。Use this skill whenever the user asks to 调研 or survey a research area, find research ideas, look for publishable optimisations, contributions or pull-request opportunities in a codebase or system, map related work for a paper, shared task or challenge, scout a field they are new to, or wants to surface things they don't know exist ("unknown unknowns") while keeping out hallucinated or irrelevant results. Use it even when the user doesn't mention agents or the classics, and even for a one-line request like "帮我调研一下 X 方向".
 ---
 
 # 御人调研（statecraft-research）
@@ -42,7 +42,7 @@ description: 用中国古籍里的御人之术（孙子兵法、韩非子、左�
 开始前写下这次调研服务于哪个决策，以及约束（算力、数据、时间、资格），假设的部分注明是假设。
 
 1. **看实物。** 论文、仓库、数据集、benchmark 或规则页。如果它直接回答了问题，到此为止（先知者……必取于人）。读 `references/scouting.zh-CN.md`；是代码库的话再读 `references/repository-archaeology.zh-CN.md`。
-2. **便宜地探查。** 用本档允许的入口。粗而及时的答案胜过精而迟到的（兵闻拙速，未睹巧之久也）。scout 交记录，不交文章。
+2. **便宜地探查。** 用本档允许的入口：文献调研用 `references/scouting.zh-CN.md` 里的入口，问题针对项目代码时用 `references/repository-archaeology.zh-CN.md` 里的代码库入口（水因地而制流）。粗而及时的答案胜过精而迟到的（兵闻拙速，未睹巧之久也）。scout 交记录，不交文章。
 3. **合并去重。** 归一标识符，让从几条路找到的同一篇工作只算一次。
 4. **初步排序。** 按相关性和对决策的价值排。这个排序只用来分配力气：把上驷放在决定胜负的那一场（田忌赛马）。这里排出来的都不是结论。
 5. **核查 shortlist。** 处处设防就处处薄弱（无所不备，则无所不寡）。读 `references/verification.zh-CN.md`。
@@ -112,7 +112,7 @@ open_question: <依赖它之前还要核什么>
 | 文件 | 什么时候读 |
 |---|---|
 | `references/scouting.zh-CN.md` | 第 1–3 步：实物检查、术语地图、六个入口、合并、scout brief |
-| `references/repository-archaeology.zh-CN.md` | 实物是代码库或系统 |
+| `references/repository-archaeology.zh-CN.md` | 实物是代码库或系统：先确定的事、代码库入口、托管平台 API 用不了时怎么查重 |
 | `references/verification.zh-CN.md` | 第 5 步：怎么核一条说法、verifier brief |
 | `references/novelty-check.zh-CN.md` | 第 7 步，把 idea 排进论文候选之前 |
 | `references/experiment-design.zh-CN.md` | 第 7 步，写 idea 的最小实验时 |
